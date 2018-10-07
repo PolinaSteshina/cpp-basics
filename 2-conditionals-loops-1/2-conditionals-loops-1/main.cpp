@@ -46,16 +46,16 @@ int main () {
                 cout << "|" << setw(6) << x1 << setw(6) << "|";
                 cout << setw(6) << f << setw(6) << "|" << endl;
             }
-            else {
-                cout << "|" << setw(6) << x1 << setw(6) << "|";
-                cout << setw(6) << int(f) << setw(6) << "|" << endl;
+            else
+            {cout << "|" << setw(6) << x1 << setw(6) << "|";
+             cout << setw(6) << int(f) << setw(6) << "|" << endl;
             }
             x1 += dx;
         }
-        cout << string(25, '-') << endl;
-    }
-        else
-        cout << "\nError!\n";
+            cout << string(25, '-') << endl;
+        }
+            else
+            cout << "\nError!\n";
 
     return 0;
 }
