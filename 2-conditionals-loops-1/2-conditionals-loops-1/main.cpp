@@ -26,11 +26,11 @@ int main () {
     if (dx < kEps) {cout << "Error dx";}
     if (c == 0) {cout << "Error ДЕЛ/0";}
     if ((abs(dx) > kEps ) && (abs(c) > kEps))
-    {
-        cout << string(25, '-') << endl;
-        cout << "|     X     |     F     |" << endl;
-        cout << string(25, '-') << endl;
-        cout.precision(3);
+    
+    {cout << string(25, '-') << endl;
+     cout << "|     X     |     F     |" << endl;
+     cout << string(25, '-') << endl;
+     cout.precision(3);
         
         while (x1 <= x2)
             
