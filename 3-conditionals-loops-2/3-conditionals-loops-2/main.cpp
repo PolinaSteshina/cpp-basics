@@ -9,9 +9,9 @@ int main()
 {
     double x, x1, x2, dx, F, ln, eps;
     const double kEps = 1e-15;
-    int n, max_iter = 1000;
+    int n, kMaxIter = 1000;
     
-    cout << "ln(x), x <= 0"<< endl;
+    cout << "ln(x), x > 0"<< endl;
     cout << "x1 = ";
     cin >> x1;
     cout << "x2 = ";
@@ -21,9 +21,10 @@ int main()
     cout << "eps = ";
     cin >> eps;
     
-    if ((dx < kEps && eps < kEps) && (x1 <= 0))
+    if (dx < kEps && eps < kEps && x1 > 0 && (x1 + 1) != 0)
     {
         cout << "Input error" << endl;
+        return 1;
     }
     cout << string(73, '-') << endl;
     cout << "|" << setw(9) << " x " << setw(9);
@@ -33,7 +34,7 @@ int main()
     cout << string(73, '-') << endl;
     
     cout << fixed;
-    cout.precision(3);
+    cout.precision(6);
     
     x = x1;
     
@@ -42,16 +43,16 @@ int main()
         cout << "|" << setw(11) << x << setw(7) << "|";
         cout << setw(11) << log(x) << setw(7) << "|";
         ln = 0;
-        for (n = 0; n < max_iter; n++)
+        for (n = 0; n < kMaxIter; n++)
         {
-            F = (2 * pow((x - 1), (2 * n + 1))) /
-            (2 * n + 1) * pow((x + 1), (2 * n + 1));
+            F = (2 * (pow((x - 1), (2 * n + 1)))) /
+            ((2 * n + 1) * pow((x + 1), (2 * n + 1)));
             ln += F;
             
             if (abs(F) < eps)
                 break;
         }
-        if (n == max_iter) {
+        if (n == kMaxIter) {
             cout << setw(11) << "Excess limit" << setw(6) << "|";
             cout << setw(11) << " " << setw(7) << "|" << endl;
         }
