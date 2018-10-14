@@ -14,7 +14,7 @@ int main() {
     {cout << "Input error" << endl;
         return 1;}
     
-    cout << "write elements: ";
+    cout << "Enter elements: ";
     for(int i = 0; i < n; i++)
     {cin >> a[i];}
     
