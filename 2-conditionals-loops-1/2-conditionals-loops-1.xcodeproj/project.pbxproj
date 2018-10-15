@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CAD322EF216A432500F22D75 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CAD322EE216A432500F22D75 /* main.cpp */; };
+		CA5659832174788200DE448C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CA5659822174788200DE448C /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CAD322E9216A432500F22D75 /* CopyFiles */ = {
+		CA56597D2174788200DE448C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CAD322EB216A432500F22D75 /* 2-conditionals-loops-1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "2-conditionals-loops-1"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CAD322EE216A432500F22D75 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		CA56597F2174788200DE448C /* 2-conditionals-loops-1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "2-conditionals-loops-1"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA5659822174788200DE448C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CAD322E8216A432500F22D75 /* Frameworks */ = {
+		CA56597C2174788200DE448C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,26 +38,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CAD322E2216A432500F22D75 = {
+		CA5659762174788100DE448C = {
 			isa = PBXGroup;
 			children = (
-				CAD322ED216A432500F22D75 /* 2-conditionals-loops-1 */,
-				CAD322EC216A432500F22D75 /* Products */,
+				CA5659812174788200DE448C /* 2-conditionals-loops-1 */,
+				CA5659802174788200DE448C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		CAD322EC216A432500F22D75 /* Products */ = {
+		CA5659802174788200DE448C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CAD322EB216A432500F22D75 /* 2-conditionals-loops-1 */,
+				CA56597F2174788200DE448C /* 2-conditionals-loops-1 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CAD322ED216A432500F22D75 /* 2-conditionals-loops-1 */ = {
+		CA5659812174788200DE448C /* 2-conditionals-loops-1 */ = {
 			isa = PBXGroup;
 			children = (
-				CAD322EE216A432500F22D75 /* main.cpp */,
+				CA5659822174788200DE448C /* main.cpp */,
 			);
 			path = "2-conditionals-loops-1";
 			sourceTree = "<group>";
@@ -65,13 +65,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CAD322EA216A432500F22D75 /* 2-conditionals-loops-1 */ = {
+		CA56597E2174788200DE448C /* 2-conditionals-loops-1 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CAD322F2216A432500F22D75 /* Build configuration list for PBXNativeTarget "2-conditionals-loops-1" */;
+			buildConfigurationList = CA5659862174788200DE448C /* Build configuration list for PBXNativeTarget "2-conditionals-loops-1" */;
 			buildPhases = (
-				CAD322E7216A432500F22D75 /* Sources */,
-				CAD322E8216A432500F22D75 /* Frameworks */,
-				CAD322E9216A432500F22D75 /* CopyFiles */,
+				CA56597B2174788200DE448C /* Sources */,
+				CA56597C2174788200DE448C /* Frameworks */,
+				CA56597D2174788200DE448C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -79,53 +79,53 @@
 			);
 			name = "2-conditionals-loops-1";
 			productName = "2-conditionals-loops-1";
-			productReference = CAD322EB216A432500F22D75 /* 2-conditionals-loops-1 */;
+			productReference = CA56597F2174788200DE448C /* 2-conditionals-loops-1 */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		CAD322E3216A432500F22D75 /* Project object */ = {
+		CA5659772174788100DE448C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Полина Стешина";
 				TargetAttributes = {
-					CAD322EA216A432500F22D75 = {
+					CA56597E2174788200DE448C = {
 						CreatedOnToolsVersion = 10.0;
 					};
 				};
 			};
-			buildConfigurationList = CAD322E6216A432500F22D75 /* Build configuration list for PBXProject "2-conditionals-loops-1" */;
+			buildConfigurationList = CA56597A2174788100DE448C /* Build configuration list for PBXProject "2-conditionals-loops-1" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = CAD322E2216A432500F22D75;
-			productRefGroup = CAD322EC216A432500F22D75 /* Products */;
+			mainGroup = CA5659762174788100DE448C;
+			productRefGroup = CA5659802174788200DE448C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CAD322EA216A432500F22D75 /* 2-conditionals-loops-1 */,
+				CA56597E2174788200DE448C /* 2-conditionals-loops-1 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CAD322E7216A432500F22D75 /* Sources */ = {
+		CA56597B2174788200DE448C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAD322EF216A432500F22D75 /* main.cpp in Sources */,
+				CA5659832174788200DE448C /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		CAD322F0216A432500F22D75 /* Debug */ = {
+		CA5659842174788200DE448C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -184,7 +184,7 @@
 			};
 			name = Debug;
 		};
-		CAD322F1216A432500F22D75 /* Release */ = {
+		CA5659852174788200DE448C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -236,7 +236,7 @@
 			};
 			name = Release;
 		};
-		CAD322F3216A432500F22D75 /* Debug */ = {
+		CA5659872174788200DE448C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -244,7 +244,7 @@
 			};
 			name = Debug;
 		};
-		CAD322F4216A432500F22D75 /* Release */ = {
+		CA5659882174788200DE448C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -255,25 +255,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CAD322E6216A432500F22D75 /* Build configuration list for PBXProject "2-conditionals-loops-1" */ = {
+		CA56597A2174788100DE448C /* Build configuration list for PBXProject "2-conditionals-loops-1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CAD322F0216A432500F22D75 /* Debug */,
-				CAD322F1216A432500F22D75 /* Release */,
+				CA5659842174788200DE448C /* Debug */,
+				CA5659852174788200DE448C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CAD322F2216A432500F22D75 /* Build configuration list for PBXNativeTarget "2-conditionals-loops-1" */ = {
+		CA5659862174788200DE448C /* Build configuration list for PBXNativeTarget "2-conditionals-loops-1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CAD322F3216A432500F22D75 /* Debug */,
-				CAD322F4216A432500F22D75 /* Release */,
+				CA5659872174788200DE448C /* Debug */,
+				CA5659882174788200DE448C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = CAD322E3216A432500F22D75 /* Project object */;
+	rootObject = CA5659772174788100DE448C /* Project object */;
 }

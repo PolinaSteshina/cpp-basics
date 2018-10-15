@@ -7,11 +7,11 @@ using namespace std;
 
 int main()
 {
-    double x, x1, x2, dx, F, ln, eps;
     const double kEps = 1e-15;
-    int n, kMaxIter = 1000;
+    const int kMaxIter = 1000;
     
-    cout << "ln(x), x > 0"<< endl;
+    double x1, x2, dx, eps;
+    cout << "ln(x), x > 0\n";
     cout << "x1 = ";
     cin >> x1;
     cout << "x2 = ";
@@ -21,48 +21,52 @@ int main()
     cout << "eps = ";
     cin >> eps;
     
-    if (dx < kEps && eps < kEps && x1 > 0 && (x1 + 1) != 0)
+    if (dx < kEps || eps < kEps || x1 < kEps || x1 > x2)
     {
-        cout << "Input error" << endl;
+        cout << "\nInput error\n";
         return 1;
     }
-    cout << string(73, '-') << endl;
-    cout << "|" << setw(9) << " x " << setw(9);
-    cout << "|" << setw(11) << " ln(x) " << setw(7);
-    cout << "|" << setw(9) << "  ln(x) series " << setw(3);
-    cout << "|" << setw(11) << " n " << setw(7)<< "|" << endl;
-    cout << string(73, '-') << endl;
+    
+    cout << string(67, '-') << endl;
+    cout << "|" << setw(8) << "x" << setw(8);
+    cout << "|" << setw(12) << "ln(x)" << setw(8);
+    cout << "|" << setw(15) << "ln(x) series" << setw(4);
+    cout << "|" << setw(6) << "n" << setw(6) << "|\n";
+    cout << string(67, '-') << endl;
     
     cout << fixed;
     cout.precision(6);
     
-    x = x1;
-    
-    while (x<=x2)
+    int n;
+    double ln, F, x = x1;
+    while (x <= x2)
     {
-        cout << "|" << setw(11) << x << setw(7) << "|";
-        cout << setw(11) << log(x) << setw(7) << "|";
+        cout << "|" << setw(12) << x << setw(4) << "|";
+        cout << setw(14) << log(x) << setw(6) << "|";
+        
         ln = 0;
         for (n = 0; n < kMaxIter; n++)
         {
-            F = (2 * (pow((x - 1), (2 * n + 1)))) /
+            F = 2 * pow((x - 1), (2 * n + 1)) /
             ((2 * n + 1) * pow((x + 1), (2 * n + 1)));
             ln += F;
             
             if (abs(F) < eps)
                 break;
         }
-        if (n == kMaxIter) {
-            cout << setw(11) << "Excess limit" << setw(6) << "|";
-            cout << setw(11) << " " << setw(7) << "|" << endl;
+        if (n == kMaxIter)
+        {
+            cout << "   excess limit   |" << setw(12) << "|\n";
         }
         else
         {
-            cout << setw(11) << ln << setw(7) << "|";
-            cout << setw(11) << n << setw(7) << "|" << endl;
+            cout << setw(13) << ln << setw(6) << "|";
+            cout << setw(6) << n << setw(6) << "|\n";
         }
         x += dx;
     }
-    cout << string(73, '-') << endl;
+    cout << string(67, '-') << endl;
+    
     return 0;
 }
+
