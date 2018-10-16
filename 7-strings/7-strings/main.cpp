@@ -27,16 +27,16 @@ int main()
     long n = 0, i = 0, j = 0, w = 0, e = 0, r = 0;
     
     while (buf [i])
-     {
+    {
         if (buf [i] == '?')
         {for (j = n; j <= i; j++)
             cout << buf [j];
             n = i + 1;
         }
-         if (buf [i] == '!' || buf [i] == '.')
-             n = i + 1;
-             i++;
-      }
+        if (buf [i] == '!' || buf [i] == '.')
+            n = i + 1;
+        i++;
+    }
     cout << endl;
     while (buf [e])
     {
@@ -49,6 +49,7 @@ int main()
         if ( buf [e] == '?' || buf [e] == '.')
             w = e + 1;
         e++;
-        }
+    }
     return 0;
 }
+
