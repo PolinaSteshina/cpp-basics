@@ -13,7 +13,7 @@ int main()
     file_name += ".txt";
     ifstream fin(file_name);
     
-    if (!fin.is_open())
+    if (!fin)
     {
         cout << "can't open "<< file_name << endl;
         return 1;
@@ -24,32 +24,32 @@ int main()
     fin.seekg (0, ios::beg);
     fin.read (buf, len);
     buf [len] = '\0';
-    long n = 0, i = 0, j = 0, w = 0, e = 0, r = 0;
+    long a = 0, i = 0, j = 0, b = 0, c = 0, d = 0;
     
     while (buf [i])
-    {
+     {
         if (buf [i] == '?')
-        {for (j = n; j <= i; j++)
+        {for (j = a; j <= i; j++)
             cout << buf [j];
-            n = i + 1;
+            a = i + 1;
         }
         if (buf [i] == '!' || buf [i] == '.')
-            n = i + 1;
+            a = i + 1;
         i++;
-    }
+     }
     cout << endl;
-    while (buf [e])
-    {
-        if (buf [e] == '!')
-        {
-            for ( r = w; r <= e; r++)
-                cout << buf [r];
-            w = e + 1;
-        }
-        if ( buf [e] == '?' || buf [e] == '.')
-            w = e + 1;
-        e++;
-    }
+    while (buf [c])
+      {
+        if (buf [c] == '!')
+         {
+            for ( d = b; d <= c; d++)
+                cout << buf [d];
+                b = c + 1;
+         }
+        if ( buf [c] == '?' || buf [c] == '.')
+            b = c + 1;
+            c++;
+      }
     return 0;
 }
 
