@@ -23,11 +23,15 @@ int main()
     cout << "dx = ";
     cin >> dx;
     
-    if (dx < kEps) { cout << "Error dx"; }
+    if (dx < kEps)
+    {
+        cout << "Error dx";
+    }
     else
     {
         cout << string(26, '-') << endl;
-        cout << "|     X     |      F     |" << endl;
+        cout << "|" << setw(6) << "X" << setw(6);
+        cout << "|" << setw(6) << "F" << setw(7) << "|" << endl;
         cout << string(26, '-') << endl;
         
         cout << fixed;

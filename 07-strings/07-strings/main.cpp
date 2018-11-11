@@ -6,47 +6,33 @@ using namespace std;
 
 int main()
 {
-    string file_name;
+    char file_name[] = "If you wanna u can take! If you wanna u can take! If you wanna, If you wanna, If you wanna u can take! What do you see when you looking at me? Real-real-real star, the beat that you need";
+    int r = sizeof(file_name);
+    int a = 0, i = 0;
     
-    cout << "Write file name: ";
-    cin >> file_name;
-    file_name += ".txt";
-    ifstream fin(file_name);
-    
-    if (!fin)
+    while ( i < r)
     {
-        cout << "can't open "<< file_name << endl;
-        return 1;
-    }
-    fin.seekg (0, ios::end);
-    long len = fin.tellg();
-    char *buf = new char [len + 1];
-    fin.seekg (0, ios::beg);
-    fin.read (buf, len);
-    buf [len] = '\0';
-    long a = 0, i = 0, j = 0, b = 0, c = 0, d = 0;
-    
-    while (buf [i])
-    {
-        if (buf [i] == '?')
-        {for (j = a; j <= i; j++)
-            cout << buf [j];
+        if (file_name [i] == '?')
+        {
+            for (int j = a; j <= i; j++)
+            cout << file_name [j];
             a = i + 1;
         }
-        if (buf [i] == '!' || buf [i] == '.')
+        if (file_name [i] == '!' || file_name [i] == '.')
             a = i + 1;
         i++;
     }
     cout << endl;
-    while (buf [c])
+    int b = 0, c = 0;
+    while (file_name [c])
     {
-        if (buf [c] == '!')
+        if (file_name [c] == '!')
         {
-            for ( d = b; d <= c; d++)
-                cout << buf [d];
+            for (int  d = b; d <= c; d++)
+                cout << file_name [d];
             b = c + 1;
         }
-        if ( buf [c] == '?' || buf [c] == '.')
+        if ( file_name [c] == '?' || file_name [c] == '.')
             b = c + 1;
         c++;
     }

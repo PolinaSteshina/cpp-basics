@@ -14,9 +14,10 @@ void PrintTableHead()
     cout << "|" << setw(6) << "n" << setw(7) << "|\n";
     cout << string(67, '-') << endl;
 }
-double ComputeSeries(double x, double eps, double F, int &n, const int kMaxIters)
+double ComputeSeries(double x, double eps, int &n, const int kMaxIters)
 {
-    double ln = 0;
+    double ln = 0, F;
+    
     for (n = 0; n < kMaxIters; n++)
     {
         F = 2 * pow((x - 1), (2 * n + 1)) /
@@ -70,7 +71,7 @@ int main()
     cout << fixed;
     cout.precision(6);
     
-    double x = x1, F;
+    double x = x1;
     while (x <= x2)
     {
         int n;
