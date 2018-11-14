@@ -37,8 +37,8 @@ int main() {
         for(int g = i + 1; g < n; g++)
             if(a[i] > a[g])
             {buf = a[i];
-            a[i] = a[g];
-            a[g] = buf;}
+                a[i] = a[g];
+                a[g] = buf;}
     
     for(int i = 0; i < n; i++)
     {cout << a[i] << ' ';}
