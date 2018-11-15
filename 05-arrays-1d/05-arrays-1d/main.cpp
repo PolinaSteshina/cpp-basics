@@ -23,13 +23,11 @@ int main() {
         if(abs(a[i]) < min)
         {
             min = abs(a[i]); index = i;
-            
         }
     
     for(int i = index + 1; i < n; i++)
     {
         sum += abs(a[i]);
-        
     }
     cout << sum << endl;
     
@@ -38,7 +36,6 @@ int main() {
         if(a[i] < kEps)
         {
             a[i] *= a[i];
-            
         }
     
     double buf;
@@ -49,7 +46,6 @@ int main() {
                 buf = a[i];
                 a[i] = a[g];
                 a[g] = buf;
-                
             }
     
     for(int i = 0; i < n; i++)
