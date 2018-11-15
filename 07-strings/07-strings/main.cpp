@@ -10,7 +10,7 @@ int main()
     int r = sizeof(file_name);
     int a = 0, i = 0;
     
-    while ( i < r)
+    while (i < r)
     {
         if (file_name [i] == '?')
         {
@@ -36,5 +36,6 @@ int main()
             b = c + 1;
         c++;
     }
+    
     return 0;
 }

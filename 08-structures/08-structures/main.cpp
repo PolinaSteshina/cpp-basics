@@ -50,7 +50,7 @@ int main()
     
     SortArray(person, kNumPeople);
     cout << string(33, '#');
-    cout << "\n\nData entered : \n\n";
+    cout << "\n\nData entered: \n\n";
     for (int i = 0; i < kNumPeople; i++)
     {
         OutputArray(person[i]);
@@ -79,6 +79,7 @@ int main()
         }
     }
     if (!is_found) cout << "\nNo people with this zodiac sign.\n";
+    
     return 0;
 }
 
@@ -138,13 +139,13 @@ bool IsValidDate(int* birth_date)
     int month = birth_date[1];
     int year = birth_date[2];
     
-    // Month and year check.
+    // Month and year check
     if (month >= 1 && month <= 12 && year >= 1000)
     {
-        // Days check.
+        // Days check
         if (day >= 1 && day <= 31)
         {
-            // Check February.
+            // Check February
             if (month == 2)
             {
                 if (day <= 28)
@@ -155,13 +156,13 @@ bool IsValidDate(int* birth_date)
                     return 0;
             }
             
-            // Check April, June, September and November.
+            // Check April, June, September, November
             if (month == 4 || month == 6 || month == 9 || month == 11)
             {
                 return day <= 30;
             }
             
-            // For other months.
+            // For other months
             return 1;
         }
         else

@@ -21,27 +21,42 @@ int main() {
     int index = 0;
     for(int i = 0; i < n; i++)
         if(abs(a[i]) < min)
-        {min = abs(a[i]); index = i;}
+        {
+            min = abs(a[i]); index = i;
+            
+        }
     
     for(int i = index + 1; i < n; i++)
-    {sum += abs(a[i]);}
+    {
+        sum += abs(a[i]);
+        
+    }
     cout << sum << endl;
     
     // Замена всех отрицательных элементов массива их квадратами
     for(int i = 0; i < n; i++)
         if(a[i] < kEps)
-        {a[i] *= a[i];}
+        {
+            a[i] *= a[i];
+            
+        }
     
     double buf;
     for(int i = 0; i < (n - 1); i++)
         for(int g = i + 1; g < n; g++)
             if(a[i] > a[g])
-            {buf = a[i];
+            {
+                buf = a[i];
                 a[i] = a[g];
-                a[g] = buf;}
+                a[g] = buf;
+                
+            }
     
     for(int i = 0; i < n; i++)
-    {cout << a[i] << ' ';}
+    {
+        cout << a[i] << ' ';
+        
+    }
     
     return 0;
 }

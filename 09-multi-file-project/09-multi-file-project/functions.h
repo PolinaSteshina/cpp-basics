@@ -1,15 +1,10 @@
 #include <iostream>
 #include <cmath>
+#define kEps 1e-15
 
 using namespace std;
 
-struct AbsMinMaxIndices {
-    int min;
-    int max;
-};
-
 void PrintArray(double* arr, const int kArraySize);
-double SumPosElem(double* arr, const int kArraySize);
-AbsMinMaxIndices FindAbsMinMaxIndices(double* arr, const int kArraySize);
-double ProductBetweenMinMax(double* arr, int begin, int end);
-void SortArray(double* arr, const int kArraySize);
+int NumberOfNegativeElements(double* a, const int n);
+double SumAbs(double* a, const int n);
+void Squaring(double* a, const int n);

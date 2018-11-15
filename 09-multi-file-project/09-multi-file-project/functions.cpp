@@ -1,38 +1,55 @@
 #include "functions.h"
 
-void PrintArray(double* arr, const int kArraySize) {
-    cout << "[";
+void PrintArray(double* arr, const int kArraySize)
+{
     for (int i = 0; i < kArraySize; i++)
-        cout << arr[i] << ((i < kArraySize-1) ? (", ") : ("]"));
+        cout << arr[i] << "  ";
 }
 
-double SumPosElem(double* arr, const int kArraySize) {
+int NumberOfNegativeElements(double* a, const int n)
+{
+    int k = 0;
+    for (int i = 0; i < n; i++)
+        if (a[i] < kEps) k++;
+    return k;
+}
+
+double SumAbs(double* a, const int n)
+{
     double sum = 0;
-    for (int i = 0; i < kArraySize; i++)
-        if (arr[i] > 0)
-            sum += arr[i];
+    double min = abs(a[0]);
+    int index = 0;
+    for(int i = 0; i < n; i++)
+        if(abs(a[i]) < min)
+        {
+            min = abs(a[i]); index = i;
+            
+        }
+    
+    for(int i = index + 1; i < n; i++)
+    {
+        sum += abs(a[i]);
+        
+    }
     return sum;
 }
 
-AbsMinMaxIndices FindAbsMinMaxIndices(double* arr, const int kArraySize) {
-    int min = 0, max = 0;
-    for (int i = 1; i < kArraySize; i++) {
-        if (abs(arr[i]) < abs(arr[min])) min = i;
-        if (abs(arr[i]) > abs(arr[max])) max = i;
-    }
-    return AbsMinMaxIndices { min, max };
-}
-
-double ProductBetweenMinMax(double* arr, int begin, int end) {
-    double product = 1;
-    for (int i = begin + 1; i < end; i++)
-        product *= arr[i];
-    return product;
-}
-
-void SortArray(double* arr, const int kArraySize) {
-    for (int i = 0; i < kArraySize - 1; i++)
-        for (int j = 0; j < kArraySize - i - 1; j++)
-            if (arr[j] < arr[j+1])
-                swap(arr[j], arr[j+1]);
+void Squaring(double* a, const int n)
+{
+    for(int i = 0; i < n; i++)
+        if(a[i] < kEps)
+        {
+            a[i] *= a[i];
+            
+        }
+    
+    double buf;
+    for(int i = 0; i < (n - 1); i++)
+        for(int g = i + 1; g < n; g++)
+            if(a[i] > a[g])
+            {
+                buf = a[i];
+                a[i] = a[g];
+                a[g] = buf;
+            }
 }
