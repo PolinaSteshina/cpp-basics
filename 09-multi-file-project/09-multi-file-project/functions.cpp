@@ -23,13 +23,11 @@ double SumAbs(double* a, const int n)
         if(abs(a[i]) < min)
         {
             min = abs(a[i]); index = i;
-            
         }
     
     for(int i = index + 1; i < n; i++)
     {
         sum += abs(a[i]);
-        
     }
     return sum;
 }
@@ -40,7 +38,6 @@ void Squaring(double* a, const int n)
         if(a[i] < kEps)
         {
             a[i] *= a[i];
-            
         }
     
     double buf;
