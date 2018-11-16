@@ -14,11 +14,11 @@ int main()
     cout << "ln(x), x > 0\n";
     cout << "x1 = ";
     cin >> x1;
-    cout << "x2 = ";
+    cout << "x2 (x2 >= x1) = ";
     cin >> x2;
-    cout << "dx = ";
+    cout << "dx (dx > 0) = ";
     cin >> dx;
-    cout << "eps = ";
+    cout << "eps (eps > 0) = ";
     cin >> eps;
     
     if (dx < kEps || eps < kEps || x1 < kEps || x1 > x2)
@@ -29,32 +29,32 @@ int main()
     
     cout << string(67, '-') << endl;
     cout << "|" << setw(8) << "x" << setw(8);
-    cout << "|" << setw(12) << "ln(x)" << setw(8);
-    cout << "|" << setw(15) << "ln(x) series" << setw(4);
+    cout << "|" << setw(15) << "ln(x) cmath" << setw(5);
+    cout << "|" << setw(14) << "ln(x) mine" << setw(5);
     cout << "|" << setw(6) << "n" << setw(6) << "|\n";
     cout << string(67, '-') << endl;
     
     cout << fixed;
     cout.precision(6);
     
-    int n;
-    double ln, F, x = x1;
+    double x = x1;
     while (x <= x2)
     {
         cout << "|" << setw(12) << x << setw(4) << "|";
         cout << setw(14) << log(x) << setw(6) << "|";
         
-        ln = 0;
-        for (n = 0; n < kMaxIter; n++)
+        int n;
+        double ln = 0, nth_term;
+        for (n = 0; n <= kMaxIter; n++)
         {
-            F = 2 * pow((x - 1), (2 * n + 1)) /
-            ((2 * n + 1) * pow((x + 1), (2 * n + 1)));
-            ln += F;
+            nth_term = 2 * pow((x - 1), (2 * n + 1)) /
+                       ((2 * n + 1) * pow((x + 1), (2 * n + 1)));
+            ln += nth_term;
             
-            if (abs(F) < eps)
-                break;
+            if (abs(nth_term) < eps) break;
         }
-        if (n == kMaxIter)
+        
+        if (n > kMaxIter)
         {
             cout << "   excess limit   |" << setw(12) << "|\n";
         }

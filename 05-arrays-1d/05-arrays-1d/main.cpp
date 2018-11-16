@@ -3,56 +3,57 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
+    const int kArraySize = 5;
+    double arr[kArraySize] = {-3, 0.2, -56, -55.8, 0.33};
     
-    const double kEps = 1e-15;
-    const int n=5;
-    double a[n]={-3, 0.2, -56, -55.8, 0.33};
+    cout << "Initial array:\n";
+    for(int i = 0; i < kArraySize; i++)
+        cout << arr[i] << "  ";
+    cout << endl;
     
     // Кол-во отрицательных элементов массива
-    int k = 0;
-    for (int i = 0; i < n; i++)
-        if (a[i] < kEps) k++;
-    {cout << k << endl;}
+    int num_negatives = 0;
+    for (int i = 0; i < kArraySize; i++)
+        if (arr[i] < 0) num_negatives++;
+    cout << "\nNumber of negative elements: ";
+    cout << num_negatives << endl;
+    
+    // Позиция минимального по модулю элемента
+    int abs_min_index = 0;
+    for(int i = 1; i < kArraySize; i++)
+        if(abs(arr[i]) < abs(arr[abs_min_index]))
+            abs_min_index = i;
     
     // Сумма модулей элементов массива, расположенных после минимального по модулю элемента
-    double sum = 0;
-    double min = abs(a[0]);
-    int index = 0;
-    for(int i = 0; i < n; i++)
-        if(abs(a[i]) < min)
-        {
-            min = abs(a[i]); index = i;
-        }
-    
-    for(int i = index + 1; i < n; i++)
+    if (abs_min_index < kArraySize - 1)
     {
-        sum += abs(a[i]);
+        double sum = 0;
+        for(int i = abs_min_index + 1; i < kArraySize; i++)
+            sum += abs(arr[i]);
+        cout << "\nSum of elements located after the absolute minimum element: ";
+        cout << sum << endl;
     }
-    cout << sum << endl;
+    else
+    {
+        cout << "\nNo sum: absolute minimum element is the last one.\n";
+    }
     
     // Замена всех отрицательных элементов массива их квадратами
-    for(int i = 0; i < n; i++)
-        if(a[i] < kEps)
-        {
-            a[i] *= a[i];
-        }
+    for(int i = 0; i < kArraySize; i++)
+        if(arr[i] < 0)
+            arr[i] *= arr[i];
     
-    double buf;
-    for(int i = 0; i < (n - 1); i++)
-        for(int g = i + 1; g < n; g++)
-            if(a[i] > a[g])
-            {
-                buf = a[i];
-                a[i] = a[g];
-                a[g] = buf;
-            }
+    for(int i = 0; i < kArraySize - 1; i++)
+        for(int g = i + 1; g < kArraySize; g++)
+            if(arr[i] > arr[g])
+                swap(arr[i], arr[g]);
     
-    for(int i = 0; i < n; i++)
-    {
-        cout << a[i] << ' ';
-        
-    }
+    cout << "\nModified and sorted array:\n";
+    for(int i = 0; i < kArraySize; i++)
+        cout << arr[i] << "  ";
+    cout << endl << endl;
     
     return 0;
 }

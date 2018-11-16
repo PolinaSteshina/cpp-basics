@@ -6,47 +6,42 @@ void PrintArray(double* arr, const int kArraySize)
         cout << arr[i] << "  ";
 }
 
-int NumberOfNegativeElements(double* a, const int n)
+int NumberOfNegativeElements(double* arr, const int kArraySize)
 {
-    int k = 0;
-    for (int i = 0; i < n; i++)
-        if (a[i] < kEps) k++;
-    return k;
+    int num_negatives = 0;
+    for (int i = 0; i < kArraySize; i++)
+        if (arr[i] < 0) num_negatives++;
+    return num_negatives;
 }
 
-double SumAbs(double* a, const int n)
+int FindAbsMinELemIndex(double* arr, const int kArraySize)
+{
+    int abs_min_index = 0;
+    for(int i = 1; i < kArraySize; i++)
+        if(abs(arr[i]) < abs(arr[abs_min_index]))
+            abs_min_index = i;
+    return abs_min_index;
+}
+
+double SumAbs(double* arr, const int kArraySize, int abs_min_index)
 {
     double sum = 0;
-    double min = abs(a[0]);
-    int index = 0;
-    for(int i = 0; i < n; i++)
-        if(abs(a[i]) < min)
-        {
-            min = abs(a[i]); index = i;
-        }
-    
-    for(int i = index + 1; i < n; i++)
-    {
-        sum += abs(a[i]);
-    }
+    for(int i = abs_min_index + 1; i < kArraySize; i++)
+        sum += abs(arr[i]);
     return sum;
 }
 
-void Squaring(double* a, const int n)
+void SquareNegativeElements(double* arr, const int kArraySize)
 {
-    for(int i = 0; i < n; i++)
-        if(a[i] < kEps)
-        {
-            a[i] *= a[i];
-        }
-    
-    double buf;
-    for(int i = 0; i < (n - 1); i++)
-        for(int g = i + 1; g < n; g++)
-            if(a[i] > a[g])
-            {
-                buf = a[i];
-                a[i] = a[g];
-                a[g] = buf;
-            }
+    for(int i = 0; i < kArraySize; i++)
+        if(arr[i] < 0)
+            arr[i] *= arr[i];
+}
+
+void SortArray(double* arr, const int kArraySize)
+{
+    for(int i = 0; i < (kArraySize - 1); i++)
+        for(int g = i + 1; g < kArraySize; g++)
+            if(arr[i] > arr[g])
+                swap(arr[i], arr[g]);
 }

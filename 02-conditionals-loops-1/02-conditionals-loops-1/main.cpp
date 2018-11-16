@@ -18,9 +18,9 @@ int main()
     cin >> c;
     cout << "x1 = ";
     cin >> x1;
-    cout << "x2 = ";
+    cout << "x2 (x2 >= x1) = ";
     cin >> x2;
-    cout << "dx = ";
+    cout << "dx (dx > 0) = ";
     cin >> dx;
     
     if (dx < kEps)
@@ -76,10 +76,13 @@ int main()
                 }
             }
             
-            if (((int(a) ^ int(b)) & ~(int(a) | int(c))) != 0)
+            int ac = static_cast<int>(a);
+            int bc = static_cast<int>(b);
+            int cc = static_cast<int>(c);
+            if (((ac ^ bc) & ~(ac | cc)) != 0)
                 cout << setw(9) << f << setw(4) << "|" << endl;
             else
-                cout << setw(7) << int(f) << setw(6) << "|" << endl;
+                cout << setw(7) << static_cast<int>(f) << setw(6) << "|" << endl;
             
             x1 += dx;
         }

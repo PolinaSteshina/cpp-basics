@@ -8,33 +8,32 @@ using namespace std;
 void PrintTableHead()
 {
     cout << string(67, '-') << endl;
-    cout << "|" << setw(9) << "x" << setw(9);
-    cout << "|" << setw(15) << "ln(1-x) cmath" << setw(3);
-    cout << "|" << setw(15) << "ln(1-x) mine" << setw(3);
-    cout << "|" << setw(6) << "n" << setw(7) << "|\n";
+    cout << "|" << setw(8) << "x" << setw(8);
+    cout << "|" << setw(15) << "ln(x) cmath" << setw(5);
+    cout << "|" << setw(14) << "ln(x) mine" << setw(5);
+    cout << "|" << setw(6) << "n" << setw(6) << "|\n";
     cout << string(67, '-') << endl;
 }
-double ComputeSeries(double x, double eps, int &n, const int kMaxIters)
+
+double ComputeSeries(double x, double eps, int& n, const int kMaxIters)
 {
-    double ln = 0, F;
-    
-    for (n = 0; n < kMaxIters; n++)
+    double ln = 0, nth_term;
+    for (n = 0; n <= kMaxIters; n++)
     {
-        F = 2 * pow((x - 1), (2 * n + 1)) /
-        ((2 * n + 1) * pow((x + 1), (2 * n + 1)));
-        ln += F;
+        nth_term = 2 * pow((x - 1), (2 * n + 1)) /
+                   ((2 * n + 1) * pow((x + 1), (2 * n + 1)));
+        ln += nth_term;
         
-        if (abs(F) < eps)
-            break;
-        
+        if (abs(nth_term) < eps) break;
     }
     return ln;
 }
+
 void PrintResult(double x, double ln, int n, const int kMaxIters)
 {
     cout << "|" << setw(12) << x << setw(4) << "|";
     cout << setw(14) << log(x) << setw(6) << "|";
-    if (n == kMaxIters)
+    if (n > kMaxIters)
     {
         cout << "   excess limit   |" << setw(12) << "|\n";
     }
@@ -53,11 +52,11 @@ int main()
     cout << "ln(x), x > 0\n";
     cout << "x1 = ";
     cin >> x1;
-    cout << "x2 = ";
+    cout << "x2 (x2 >= x1) = ";
     cin >> x2;
-    cout << "dx = ";
+    cout << "dx (dx > 0) = ";
     cin >> dx;
-    cout << "eps = ";
+    cout << "eps (eps > 0) = ";
     cin >> eps;
     
     if (dx < kEps || eps < kEps || x1 < kEps || x1 > x2)

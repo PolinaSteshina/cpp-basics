@@ -4,64 +4,115 @@
 
 using namespace std;
 
-int main() {
-    
-    const int n = 3, m = 5;
-    int a[n][m] = {1, -6, 1, 5, 1, 2, -6, -6, -6, -6, 88, -9, 0, 0, 33};
-    
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            cout << a[i][j] << " " << " ";
-        }
-        cout << endl;
+void ReadMatrix(int** matrix, int num_rows, int num_cols, ifstream& fin);
+void PrintMatrix(int** matrix, int num_rows, int num_cols);
+int CountRepeatedNumbers(int* row, int num_cols);
+void SortMatrix(int** matrix, int num_rows, int num_cols);
+int FindFirstNonNegativeColumn(int** matrix, int num_rows, int num_cols);
+
+int main()
+{
+    ifstream fin("/Users/polinastesina/cpp-basics/06-arrays-2d/06-arrays-2d/matrix.txt");
+    if (!fin)
+    {
+        cout << "\nCan't open file: matrix.txt\n";
+        return 1;
     }
     
-    // Поиск первого столбца без отрицательных элементов
-    int numj = -1;
-    for (int j = 0; j < m; j++) {
-        bool proverka = true;
-        for (int i = 0; i < n; i++) {
-            if (a[i][j] < 0) {
-                proverka = false;
-                break;
-            }
-        }
-        if (proverka == true) {
-            numj = j + 1;
-            break;
-        }
-    }
-    if (numj == -1) {
-        cout << "No column"<< endl;
-    }
-    else {
-        cout<<"The number of the first column that does not contain any negative element: ";
-        cout << numj << endl;
-    }
+    int num_rows = 3, num_cols = 5;
     
-    // Упоряд. матрицы по кол-ву повторяющихся элементов
-    for (int i = 0; i < n; i++) {
-        int maxpov = 1;
-        int num_i = 0;
-        int pov = 1;
-        for (int j = 0;j < m-1;j++) {
-                if (a[i][j] == a[i][j+1]) {
-                    pov = pov + 1;
-                    num_i = i;
-                }
-            }
-            if (pov >= maxpov) {
-                maxpov=pov;
-                swap(a[n-1], a[num_i]);
-            }
-        }
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    cout << a[i][j] << " " << " ";
-                }
-                cout << endl;
-            }
+    int** matrix = new int*[num_rows];
+    for (int i = 0; i < num_rows; i++)
+        matrix[i] = new int[num_cols];
+    
+    cout << "Initial matrix:\n";
+    ReadMatrix(matrix, num_rows, num_cols, fin);
+    fin.close();
+    
+    PrintMatrix(matrix, num_rows, num_cols);
+    cout << endl;
+    
+    cout << "Sorted matrix:\n";
+    SortMatrix(matrix, num_rows, num_cols);
+    PrintMatrix(matrix, num_rows, num_cols);
+    
+    cout<<"\nFirst column that does not contain any negative elements is: ";
+    int colunm_index = FindFirstNonNegativeColumn(matrix, num_rows, num_cols);
+    if (colunm_index == -1)
+        cout << "no column.\n";
+    else
+        cout << colunm_index << endl;
+    cout << endl;
+    
+    for (int i = 0; i < num_rows; i++) delete[] matrix[i];
+    delete[] matrix;
     
     return 0;
 }
 
+void ReadMatrix(int** matrix, int num_rows, int num_cols, ifstream& fin)
+{
+    for (int i = 0; i < num_rows; i++)
+        for (int j = 0; j < num_cols; j++)
+            fin >> matrix[i][j];
+}
+
+void PrintMatrix(int** matrix, int num_rows, int num_cols)
+{
+    for (int i = 0; i < num_rows; i++)
+    {
+        for (int j = 0; j < num_cols; j++)
+            cout << matrix[i][j] << "  ";
+        cout << endl;
+    }
+}
+
+int CountRepeatedNumbers(int* row, int num_cols)
+{
+    int num_repeated_max = 0;
+    for (int i = 0; i < num_cols; i++)
+    {
+        int num_repeated = 0;
+        for (int j = 0; j < num_cols; j++)
+            if (row[j] == row[i])
+                num_repeated++;
+        if (num_repeated > num_repeated_max)
+            num_repeated_max = num_repeated;
+    }
+    
+    return num_repeated_max;
+}
+
+void SortMatrix(int** matrix, int num_rows, int num_cols)
+{
+    for (int i = 0; i < num_rows - 1; i++)
+        for (int j = 0; j < num_rows - i - 1; j++)
+            if (CountRepeatedNumbers(matrix[j], num_cols) >
+                CountRepeatedNumbers(matrix[j + 1], num_cols))
+                swap(matrix[j], matrix[j + 1]);
+}
+
+int FindFirstNonNegativeColumn(int** matrix, int num_rows, int num_cols)
+{
+    int colunm_index = -1;
+    for (int j = 0; j < num_cols; j++)
+    {
+        bool no_negatives = true;
+        for (int i = 0; i < num_rows; i++)
+        {
+            if (matrix[i][j] < 0)
+            {
+                no_negatives = false;
+                break;
+            }
+        }
+        
+        if (no_negatives)
+        {
+            colunm_index = j;
+            break;
+        }
+    }
+    
+    return colunm_index;
+}

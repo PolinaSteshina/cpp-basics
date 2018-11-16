@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cmath>
-#define kEps 1e-15
 
 using namespace std;
 
 void PrintArray(double* arr, const int kArraySize);
-int NumberOfNegativeElements(double* a, const int n);
-double SumAbs(double* a, const int n);
-void Squaring(double* a, const int n);
+int NumberOfNegativeElements(double* arr, const int kArraySize);
+int FindAbsMinELemIndex(double* arr, const int kArraySize);
+double SumAbs(double* arr, const int kArraySize, int abs_min_index);
+void SquareNegativeElements(double* arr, const int kArraySize);
+void SortArray(double* arr, const int kArraySize);

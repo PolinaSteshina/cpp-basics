@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA1E5846219EDA8E002D5361 /* matrix.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = matrix.txt; sourceTree = "<group>"; };
 		CA5D71F3219CAC9C000BB4A6 /* 06-arrays-2d */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "06-arrays-2d"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5D71F6219CAC9C000BB4A6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +58,7 @@
 		CA5D71F5219CAC9C000BB4A6 /* 06-arrays-2d */ = {
 			isa = PBXGroup;
 			children = (
+				CA1E5846219EDA8E002D5361 /* matrix.txt */,
 				CA5D71F6219CAC9C000BB4A6 /* main.cpp */,
 			);
 			path = "06-arrays-2d";

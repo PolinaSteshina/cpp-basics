@@ -23,6 +23,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA1E5847219EF98F002D5361 /* integer.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = integer.txt; sourceTree = "<group>"; };
+		CA1E5848219EF98F002D5361 /* float.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = float.txt; sourceTree = "<group>"; };
+		CA1E5849219EF98F002D5361 /* double.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = double.txt; sourceTree = "<group>"; };
 		CA5D7206219CAD5A000BB4A6 /* 10-templates */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "10-templates"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5D7209219CAD5A000BB4A6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +60,9 @@
 		CA5D7208219CAD5A000BB4A6 /* 10-templates */ = {
 			isa = PBXGroup;
 			children = (
+				CA1E5849219EF98F002D5361 /* double.txt */,
+				CA1E5848219EF98F002D5361 /* float.txt */,
+				CA1E5847219EF98F002D5361 /* integer.txt */,
 				CA5D7209219CAD5A000BB4A6 /* main.cpp */,
 			);
 			path = "10-templates";

@@ -3,122 +3,163 @@
 #include <iomanip>
 #include <string>
 
-#define n 3
-#define m 5
-
 using namespace std;
 
 template <class T>
-void PrintMatrix(T a[3][5]);
-template <class T>
-void FindingANegativeColumn(T a[3][5]);
-template <class T>
-void TheOrderingOfTheMatrix(T a[3][5]);
+void ReadMatrix(T** matrix, int num_rows, int num_cols, ifstream& fin);
 
-int main() {
-    
+template <class T>
+void PrintMatrix(T** matrix, int num_rows, int num_cols);
+
+template <class T>
+int CountRepeatedNumbers(T* row, int num_cols);
+
+template <class T>
+void SortMatrix(T** matrix, int num_rows, int num_cols);
+
+template <class T>
+int FindFirstNonNegativeColumn(T** matrix, int num_rows, int num_cols);
+
+template <class T>
+bool Execute(string file_name);
+
+int main()
+{
     string option;
 selection:
     cout << "Select the data type (0 - integer, 1 - double, 2 - float): ";
     cin >> option;
     if (option == "0")
     {
-        int a[n][m] = {1, -6, 1, 5, 1, 2, -6, -6, -6, -6, 88, -9, 0, 0, 33};
-        PrintMatrix(a);
-        FindingANegativeColumn(a);
-        TheOrderingOfTheMatrix (a);
+        Execute<int>("integer.txt");
     }
     else if (option == "1")
     {
-       double a[n][m] = {1.9, -6.7, 1.9, 5.88, 1.9, 2.3, -6.5, -6.5, -6.5, -6.5, 88.1, -9.3, 0.4, 0.4, 33.1};
-        PrintMatrix(a);
-        FindingANegativeColumn(a);
-        TheOrderingOfTheMatrix (a);
+        Execute<double>("double.txt");
     }
     else if (option == "2")
     {
-       float a[n][m] = {1.9, -6.7, 1.9, 5.88, 1.9, 2.3, -6.5, -6.5, -6.5, -6.5, 88.1, -9.3, 0.4, 0.4, 33.1};
-        PrintMatrix(a);
-        FindingANegativeColumn(a);
-        TheOrderingOfTheMatrix (a);
+        Execute<float>("float.txt");
     }
     else
     {
         cout << "Wrong input!\n\n";
         goto selection;
     }
+    
     return 0;
 }
+
 template <class T>
-void PrintMatrix( T a[3][5])
+bool Execute(string file_name)
 {
-    for (int i = 0; i < n; i++)
+    string path = "/Users/polinastesina/cpp-basics/10-templates/10-templates/";
+    ifstream fin(path + file_name);
+    if (!fin)
     {
-        for (int j = 0; j < m; j++)
-        {
-            cout << a[i][j] << " " << " ";
-        }
-        cout << endl;
+        cout << "\nCan't open file: " << file_name << ".\n";
+        return 1;
     }
+    
+    int num_rows = 3, num_cols = 5;
+    
+    T** matrix = new T*[num_rows];
+    for (int i = 0; i < num_rows; i++)
+        matrix[i] = new T[num_cols];
+    
+    cout << "Initial matrix:\n";
+    ReadMatrix(matrix, num_rows, num_cols, fin);
+    fin.close();
+    
+    PrintMatrix(matrix, num_rows, num_cols);
+    cout << endl;
+    
+    cout << "Sorted matrix:\n";
+    SortMatrix(matrix, num_rows, num_cols);
+    PrintMatrix(matrix, num_rows, num_cols);
+    
+    cout<<"\nFirst column that does not contain any negative elements is: ";
+    int colunm_index = FindFirstNonNegativeColumn(matrix, num_rows, num_cols);
+    if (colunm_index == -1)
+        cout << "no column.\n";
+    else
+        cout << colunm_index << endl;
+    cout << endl;
+    
+    for (int i = 0; i < num_rows; i++) delete[] matrix[i];
+    delete[] matrix;
+    
+    return 0;
 }
+
 template <class T>
-void FindingANegativeColumn(T a[3][5])
+void ReadMatrix(T** matrix, int num_rows, int num_cols, ifstream& fin)
 {
-    int numj = -1;
-    for (int j = 0; j < m; j++)
-    {
-        bool proverka = true;
-        for (int i = 0; i < n; i++)
-        {
-            if (a[i][j] < 0) {
-                proverka = false;
-                break;
-            }
-        }
-        if (proverka == true)
-        {
-            numj = j + 1;
-            break;
-        }
-    }
-    if (numj == -1)
-    {
-        cout << "No column" << endl;
-    }
-    else {
-        cout<<"The number of the first column that does not contain any negative element: ";
-        cout << numj << endl;
-    }
+    for (int i = 0; i < num_rows; i++)
+        for (int j = 0; j < num_cols; j++)
+            fin >> matrix[i][j];
 }
+
 template <class T>
-void TheOrderingOfTheMatrix(T a[3][5])
+void PrintMatrix(T** matrix, int num_rows, int num_cols)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < num_rows; i++)
     {
-        int maxpov = 1;
-        int num_i = 0;
-        int pov = 1;
-        for (int j = 0;j < m-1;j++)
-        {
-            if (a[i][j] == a[i][j+1])
-            {
-                pov = pov + 1;
-                num_i = i;
-            }
-        }
-        if (pov >= maxpov)
-        {
-            maxpov = pov;
-            swap(a[n-1], a[num_i]);
-        }
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            cout << a[i][j] << " " << " ";
-        }
+        for (int j = 0; j < num_cols; j++)
+            cout << matrix[i][j] << "  ";
         cout << endl;
     }
 }
 
+template <class T>
+int CountRepeatedNumbers(T* row, int num_cols)
+{
+    int num_repeated_max = 0;
+    for (int i = 0; i < num_cols; i++)
+    {
+        int num_repeated = 0;
+        for (int j = 0; j < num_cols; j++)
+            if (row[j] == row[i])
+                num_repeated++;
+        if (num_repeated > num_repeated_max)
+            num_repeated_max = num_repeated;
+    }
+    
+    return num_repeated_max;
+}
+
+template <class T>
+void SortMatrix(T** matrix, int num_rows, int num_cols)
+{
+    for (int i = 0; i < num_rows - 1; i++)
+        for (int j = 0; j < num_rows - i - 1; j++)
+            if (CountRepeatedNumbers(matrix[j], num_cols) >
+                CountRepeatedNumbers(matrix[j + 1], num_cols))
+                swap(matrix[j], matrix[j + 1]);
+}
+
+template <class T>
+int FindFirstNonNegativeColumn(T** matrix, int num_rows, int num_cols)
+{
+    int colunm_index = -1;
+    for (int j = 0; j < num_cols; j++)
+    {
+        bool no_negatives = true;
+        for (int i = 0; i < num_rows; i++)
+        {
+            if (matrix[i][j] < 0)
+            {
+                no_negatives = false;
+                break;
+            }
+        }
+        
+        if (no_negatives)
+        {
+            colunm_index = j;
+            break;
+        }
+    }
+    
+    return colunm_index;
+}
