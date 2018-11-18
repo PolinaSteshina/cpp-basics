@@ -1,41 +1,55 @@
 #include <iostream>
-#include <string>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-    char file_name[] = "If you wanna u can take! If you wanna u can take! If you wanna, If you wanna, If you wanna u can take! What do you see when you looking at me? Real-real-real star, the beat that you need";
-    int r = sizeof(file_name);
-    int a = 0, i = 0;
-    
-    while (i < r)
+    ifstream fin("/Users/polinastesina/cpp-basics/07-strings/07-strings/text.txt");
+    if (!fin.is_open())
     {
-        if (file_name [i] == '?')
+        cout << "Can't open file: text.txt!\n";
+        return 1;
+    }
+    
+    fin.seekg(0, ios::end);
+    long len = fin.tellg();
+    char* text = new char[len + 1];
+    
+    fin.seekg(0, ios::beg);
+    fin.read(text, len);
+    text[len] = '\0';
+    
+    int i = 0, n = 0;
+    while (text[i])
+    {
+        if (text[i] == '?')
         {
-            for (int j = a; j <= i; j++)
-            cout << file_name [j];
-            a = i + 1;
+            for (int j = n; j <= i; j++)
+                cout << text[j];
+            n = i + 1;
         }
-        if (file_name [i] == '!' || file_name [i] == '.')
-            a = i + 1;
+        else if (text[i] == '!' || text[i] == '.')
+            n = i + 1;
         i++;
     }
     cout << endl;
-    int b = 0, c = 0;
-    while (file_name [c])
+    
+    i = n = 0;
+    while (text[i])
     {
-        if (file_name [c] == '!')
+        if (text[i] == '!')
         {
-            for (int  d = b; d <= c; d++)
-                cout << file_name [d];
-            b = c + 1;
+            for (int j = n; j <= i; j++)
+                cout << text[j];
+            n = i + 1;
         }
-        if ( file_name [c] == '?' || file_name [c] == '.')
-            b = c + 1;
-        c++;
+        if (text[i] == '?' || text[i] == '.')
+            n = i + 1;
+        i++;
     }
+    cout << endl;
     
     return 0;
 }

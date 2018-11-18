@@ -59,11 +59,15 @@ void ReadMatrix(int** matrix, int num_rows, int num_cols, ifstream& fin)
 
 void PrintMatrix(int** matrix, int num_rows, int num_cols)
 {
+    int* repeated_numbers = new int[num_rows];
+    for (int i = 0; i < num_rows; i++)
+        repeated_numbers[i] = CountRepeatedNumbers(matrix[i], num_cols);
+    
     for (int i = 0; i < num_rows; i++)
     {
         for (int j = 0; j < num_cols; j++)
-            cout << matrix[i][j] << "  ";
-        cout << endl;
+            cout << setw(3) << matrix[i][j] << " ";
+        cout << " |" << setw(2) << repeated_numbers[i] << endl;
     }
 }
 
@@ -85,11 +89,16 @@ int CountRepeatedNumbers(int* row, int num_cols)
 
 void SortMatrix(int** matrix, int num_rows, int num_cols)
 {
+    int* repeated_numbers = new int[num_rows];
+    for (int i = 0; i < num_rows; i++)
+        repeated_numbers[i] = CountRepeatedNumbers(matrix[i], num_cols);
+    
     for (int i = 0; i < num_rows - 1; i++)
         for (int j = 0; j < num_rows - i - 1; j++)
-            if (CountRepeatedNumbers(matrix[j], num_cols) >
-                CountRepeatedNumbers(matrix[j + 1], num_cols))
+            if (repeated_numbers[j] > repeated_numbers[j + 1]) {
                 swap(matrix[j], matrix[j + 1]);
+                swap(repeated_numbers[j], repeated_numbers[j + 1]);
+            }
 }
 
 int FindFirstNonNegativeColumn(int** matrix, int num_rows, int num_cols)

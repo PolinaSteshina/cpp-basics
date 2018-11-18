@@ -1,86 +1,76 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <sstream>
 
 using namespace std;
 
 struct Znak
 {
-    string name;
+    string full_name;
     string zodiac;
     int birth_date[3]; // [0] — day, [1] — month, [2] — year
 };
 
+void InputPeople(Znak* people, const int kNumPeople);
 bool IsLeap(int year);
-void SortArray(Znak* person, const int kNumPeople);
-void OutputArray(Znak person);
-bool IsValidDate(int* birth_date);
+void SortArray(Znak* people, const int kNumPeople);
+void PrintPerson(Znak person);
+bool IsValidDate(int* date);
 bool IsFirstPersonYounger(int* birth_date_1, int* birth_date_2);
+void FindPeople(Znak* people, const int kNumPeople, string zodiac);
 
 int main()
 {
-    const int kNumPeople = 4;
-    struct Znak person[kNumPeople];
+    const int kNumPeople = 8;
+    Znak people[kNumPeople];
+    
+    InputPeople(people, kNumPeople);
+    SortArray(people, kNumPeople);
+    
+    cout << string(33, '#');
+    cout << "\n\nData entered: \n";
+    for (int i = 0; i < kNumPeople; i++)
+    {
+        PrintPerson(people[i]);
+        cout << endl;
+    }
+    
+    string zodiac;
+    cout << "Enter the zodiac sign of a person to search for: ";
+    cin >> zodiac;
+    FindPeople(people, kNumPeople, zodiac);
+    
+    return 0;
+}
+
+void InputPeople(Znak* people, const int kNumPeople)
+{
     for (int i = 0; i < kNumPeople; i++)
     {
         cout << "Enter full name (e.g., Ivanov Ivan): ";
-        getline(cin, person[i].name);
+        getline(cin, people[i].full_name);
         cout << "Enter zodiac sign (e.g., Taurus): ";
-        cin >> person[i].zodiac;
+        cin >> people[i].zodiac;
+        
     date_check:
         cout << "Enter day of birth: ";
-        cin >> person[i].birth_date[0];
+        cin >> people[i].birth_date[0];
         cout << "Enter month of birth: ";
-        cin >> person[i].birth_date[1];
+        cin >> people[i].birth_date[1];
         cout << "Enter year of birth >= 1000: ";
-        cin >> person[i].birth_date[2];
+        cin >> people[i].birth_date[2];
         cout << endl;
         cin.ignore();
         
-        if (!IsValidDate(person[i].birth_date))
+        if (!IsValidDate(people[i].birth_date))
         {
             cout << "Invalid date:";
             for (int j = 0; j < 3; j++)
-                cout << " " << person[i].birth_date[j];
+                cout << " " << people[i].birth_date[j];
             cout << ". Try again.\n";
             goto date_check;
         }
     }
-    
-    SortArray(person, kNumPeople);
-    cout << string(33, '#');
-    cout << "\n\nData entered: \n\n";
-    for (int i = 0; i < kNumPeople; i++)
-    {
-        OutputArray(person[i]);
-        cout << endl;
-    }
-    
-    string the_zodiac_sign_of_a_person;
-    cout << string(33, '#');
-    cout << "\n\nEnter the zodiac sign of a person to search for: ";
-    cin >> the_zodiac_sign_of_a_person;
-    bool is_found = false;
-    for (int i = 0; i < kNumPeople; i++)
-    {
-        stringstream full_name(person[i].zodiac);
-        string zodiac_sign;
-        full_name >> zodiac_sign;
-        if (the_zodiac_sign_of_a_person == zodiac_sign)
-        {
-            if (!is_found)
-            {
-                cout << "\nZodiac sign found:\n\n";
-                is_found = true;
-            }
-            OutputArray(person[i]);
-            cout << endl;
-        }
-    }
-    if (!is_found) cout << "\nNo people with this zodiac sign.\n";
-    
-    return 0;
 }
 
 bool IsFirstPersonYounger(int* birth_date_1, int* birth_date_2)
@@ -97,7 +87,7 @@ bool IsFirstPersonYounger(int* birth_date_1, int* birth_date_2)
     return first_date.compare(second_date) == 1;
 }
 
-void SortArray(Znak* person, const int kNumPeople)
+void SortArray(Znak* people, const int kNumPeople)
 {
     int i = 0;
     bool swapped = true;
@@ -106,9 +96,9 @@ void SortArray(Znak* person, const int kNumPeople)
         swapped = false;
         for (int j = 0; j < kNumPeople - i - 1; j++)
         {
-            if (IsFirstPersonYounger(person[j].birth_date, person[j + 1].birth_date))
+            if (IsFirstPersonYounger(people[j].birth_date, people[j + 1].birth_date))
             {
-                swap(person[j], person[j + 1]);
+                swap(people[j], people[j + 1]);
                 swapped = true;
             }
         }
@@ -116,13 +106,12 @@ void SortArray(Znak* person, const int kNumPeople)
     }
 }
 
-void OutputArray(Znak person)
+void PrintPerson(Znak person)
 {
-    cout << "Name: " << person.name << endl;
+    cout << "Name: " << person.full_name << endl;
     cout << "Zodiac: " << person.zodiac << endl;
-    cout << "Day of birth: " << person.birth_date[0] << endl;
-    cout << "Month of birth: " << person.birth_date[1] << endl;
-    cout << "Year of birth: " << person.birth_date[2] << endl;
+    cout << "Birthday: " << person.birth_date[0] << ".";
+    cout << person.birth_date[1] << "." << person.birth_date[2] << endl;
 }
 
 bool IsLeap(int year)
@@ -133,11 +122,11 @@ bool IsLeap(int year)
         return 0;
 }
 
-bool IsValidDate(int* birth_date)
+bool IsValidDate(int* date)
 {
-    int day = birth_date[0];
-    int month = birth_date[1];
-    int year = birth_date[2];
+    int day = date[0];
+    int month = date[1];
+    int year = date[2];
     
     // Month and year check
     if (month >= 1 && month <= 12 && year >= 1000)
@@ -147,20 +136,11 @@ bool IsValidDate(int* birth_date)
         {
             // Check February
             if (month == 2)
-            {
-                if (day <= 28)
-                    return 1;
-                else if (day == 29 && IsLeap(year))
-                    return 1;
-                else
-                    return 0;
-            }
+                return ((day <= 28) || (day == 29 && IsLeap(year)));
             
             // Check April, June, September, November
             if (month == 4 || month == 6 || month == 9 || month == 11)
-            {
-                return day <= 30;
-            }
+                return (day <= 30);
             
             // For other months
             return 1;
@@ -174,4 +154,24 @@ bool IsValidDate(int* birth_date)
     {
         return 0;
     }
+}
+
+void FindPeople(Znak* people, const int kNumPeople, string zodiac)
+{
+    bool is_found = false;
+    for (int i = 0; i < kNumPeople; i++)
+    {
+        if (zodiac == people[i].zodiac)
+        {
+            if (!is_found)
+            {
+                cout << "\nZodiac sign found:\n\n";
+                is_found = true;
+            }
+            PrintPerson(people[i]);
+            cout << endl;
+        }
+    }
+    
+    if (!is_found) cout << "\nNo people with this zodiac sign.\n";
 }

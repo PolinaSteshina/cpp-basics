@@ -103,11 +103,15 @@ void ReadMatrix(T** matrix, int num_rows, int num_cols, ifstream& fin)
 template <class T>
 void PrintMatrix(T** matrix, int num_rows, int num_cols)
 {
+    int* repeated_numbers = new int[num_rows];
+    for (int i = 0; i < num_rows; i++)
+        repeated_numbers[i] = CountRepeatedNumbers(matrix[i], num_cols);
+    
     for (int i = 0; i < num_rows; i++)
     {
         for (int j = 0; j < num_cols; j++)
-            cout << matrix[i][j] << "  ";
-        cout << endl;
+            cout << setw(3) << matrix[i][j] << " ";
+        cout << " |" << setw(2) << repeated_numbers[i] << endl;
     }
 }
 
@@ -131,11 +135,16 @@ int CountRepeatedNumbers(T* row, int num_cols)
 template <class T>
 void SortMatrix(T** matrix, int num_rows, int num_cols)
 {
+    int* repeated_numbers = new int[num_rows];
+    for (int i = 0; i < num_rows; i++)
+        repeated_numbers[i] = CountRepeatedNumbers(matrix[i], num_cols);
+    
     for (int i = 0; i < num_rows - 1; i++)
         for (int j = 0; j < num_rows - i - 1; j++)
-            if (CountRepeatedNumbers(matrix[j], num_cols) >
-                CountRepeatedNumbers(matrix[j + 1], num_cols))
+            if (repeated_numbers[j] > repeated_numbers[j + 1]) {
                 swap(matrix[j], matrix[j + 1]);
+                swap(repeated_numbers[j], repeated_numbers[j + 1]);
+            }
 }
 
 template <class T>
